@@ -133,7 +133,7 @@ roslaunch fast_lio mapping_mid360.launch
 3. **ROS 版本**：`livox_ros_driver2` 编译时须传 `-DROS_EDITION=ROS1`，否则会进入 ROS2 分支报错
 4. **外参约定**：LI-Init 输出的变换矩阵为 LiDAR→IMU，无需取逆，直接填入 `extrinsic_R` / `extrinsic_T`
 
-## 🙏 致谢
+## ♪(･ω･)ﾉ 致谢
 
 本项目基于以下开源工作构建，在此向相关团队致以诚挚谢意：
 
