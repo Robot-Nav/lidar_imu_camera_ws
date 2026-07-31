@@ -14,6 +14,10 @@
 ## 📖 项目简介
 
 本项目主要用于 **LiDAR 与外接 IMU 的时空标定**，涵盖外参（旋转、平移）、时间偏移以及 IMU 零偏的联合估计。标定完成后，将结果直接写入 FAST-LIO2 的配置文件，实现高精度实时激光惯性建图。
+例如：
+
+<img width="3072" height="4096" alt="lidar-imu" src="https://github.com/user-attachments/assets/44064b1e-27bb-43ea-94eb-430dd4f8e14e" />
+
 
 目前包含两套标定方案：
 
