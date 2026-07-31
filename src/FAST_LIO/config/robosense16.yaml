@@ -1,0 +1,42 @@
+# 实物环境
+common:
+    # 按 rslidar_sdk 实际点云话题修改；官方常见配置为 /rslidar_points。
+    lid_topic: "/rslidar_points"
+    # 必须是与雷达时间同步的 sensor_msgs/Imu 话题。
+    imu_topic: "/imu/data"
+    global_frame: "map"
+    time_sync_en: false
+    time_offset_lidar_to_imu: 0.0
+
+preprocess:
+    lidar_type: 2              # 标准旋转式 PointCloud2 分支
+    scan_line: 16
+    scan_rate: 10              # 与 RoboSense 实物转速一致；20 Hz 雷达须改为 20
+    # FAST_LIO 已将 RoboSense XYZIRT 的 timestamp 归一化成相对“秒”时间。
+    timestamp_unit: 0
+    blind: 1.0
+
+mapping:
+    acc_cov: 0.1
+    gyr_cov: 0.1
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree: 180
+    det_range: 100.0
+    # 量产运行使用标定外参，保持 false；以下单位阵/零平移仅是安全占位，
+    # 不得直接用于实物。extrinsic_T/R 是 LiDAR 在 IMU 坐标系下的位姿。
+    extrinsic_est_en: false
+    extrinsic_T: [0.0, 0.0, 0.0]
+    extrinsic_R: [1.0, 0.0, 0.0,
+                  0.0, 1.0, 0.0,
+                  0.0, 0.0, 1.0]
+
+publish:
+    path_en: true
+    scan_publish_en: true
+    dense_publish_en: true
+    scan_bodyframe_pub_en: true
+
+pcd_save:
+    pcd_save_en: false
+    interval: -1

@@ -1,0 +1,49 @@
+# ROS 构建产物
+build/
+devel/
+install/
+logs/
+
+# 标定数据包（体积过大，不纳入版本控制）
+bags/
+*.bag
+*.bag.active
+*.bag.orig.active
+
+# 点云大文件
+*.pcd
+PCD/
+
+# 第三方 SDK（见 README 安装说明）
+third_party/
+
+# 嵌套仓库元数据
+**/.git/
+
+# 编译/临时文件
+*.o
+*.so
+*.a
+*.log
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
+catkin_make.cache
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 上游仓库的大体积演示动图（非本项目内容，避免拖慢克隆）
+src/FAST_LIO/doc/*.gif
+src/LiDAR_IMU_Init/image/*.gif
+*.pdf

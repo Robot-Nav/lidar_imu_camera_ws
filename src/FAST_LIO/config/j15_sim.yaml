@@ -1,0 +1,41 @@
+# J15 Gazebo 仿真：velodyne_plugin 的 PointCloud2 只有
+# x/y/z/intensity/ring；FAST_LIO 会按方位角和 scan_rate 重建逐点相对时间。
+common:
+    lid_topic: "/velodyne_points"
+    imu_topic: "/imu/data"
+    global_frame: "map"
+    time_sync_en: false
+    time_offset_lidar_to_imu: 0.0
+
+preprocess:
+    lidar_type: 2
+    scan_line: 64
+    scan_rate: 10
+    # Gazebo 输出为同一时刻的 raycast 快照，不能按方位角伪造逐点时间。
+    simultaneous_scan: true
+    # 仿真原始消息没有 time，数值不会参与计算。
+    timestamp_unit: 0
+    blind: 2.0
+
+mapping:
+    acc_cov: 0.1
+    gyr_cov: 0.1
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree: 180
+    det_range: 100.0
+    extrinsic_est_en: false
+    extrinsic_T: [0.0, 0.0, 0.5]
+    extrinsic_R: [1.0, 0.0, 0.0,
+                  0.0, 1.0, 0.0,
+                  0.0, 0.0, 1.0]
+
+publish:
+    path_en: false
+    scan_publish_en: true
+    dense_publish_en: true
+    scan_bodyframe_pub_en: true
+
+pcd_save:
+    pcd_save_en: false
+    interval: -1

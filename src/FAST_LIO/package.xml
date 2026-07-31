@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fast_lio</name>
+  <version>0.0.0</version>
+
+  <description>
+    This is a modified version of LOAM which is original algorithm
+    is described in the following paper:
+    J. Zhang and S. Singh. LOAM: Lidar Odometry and Mapping in Real-time.
+      Robotics: Science and Systems Conference (RSS). Berkeley, CA, July 2014.
+  </description>
+
+  <maintainer email="dev@livoxtech.com">claydergc</maintainer>
+
+  <license>BSD</license>
+
+  <author email="zhangji@cmu.edu">Ji Zhang</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+  <depend>pcl_ros</depend>
+  <depend>livox_ros_driver2</depend>
+  <depend>eigen</depend>
+  <depend>eigen_conversions</depend>
+  <build_depend>message_generation</build_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+
+  <test_depend>rostest</test_depend>
+  <test_depend>rosbag</test_depend>
+
+  <export>
+  </export>
+</package>
