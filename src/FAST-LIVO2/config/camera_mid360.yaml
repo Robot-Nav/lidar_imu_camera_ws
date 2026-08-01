@@ -1,0 +1,19 @@
+# D435i Color Camera Intrinsics (Pinhole Model)
+# D435i 出厂即零畸变 (D=[0,0,0,0])，官方标称内参(640x480):
+#   fx≈615, fy≈615, cx≈320, cy≈240
+# 注: 每台 D435i 出厂单独标定，精确值可运行下面命令读取本机:
+#   rostopic echo /camera/color/camera_info -n1
+# 或: rs-enumerate-devices -c
+
+cam_model: Pinhole
+cam_width: 640
+cam_height: 480
+scale: 0.5
+cam_fx: 615.0
+cam_fy: 615.0
+cam_cx: 320.0
+cam_cy: 240.0
+cam_d0: 0.0
+cam_d1: 0.0
+cam_d2: 0.0
+cam_d3: 0.0

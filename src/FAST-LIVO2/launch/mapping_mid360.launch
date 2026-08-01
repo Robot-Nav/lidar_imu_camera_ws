@@ -1,0 +1,19 @@
+<launch>
+<!-- FAST-LIVO2 launch for Mid-360 LiDAR + D435i Camera + External IMU -->
+
+	<arg name="rviz" default="true" />
+
+	<rosparam command="load" file="$(find fast_livo)/config/mid360.yaml" />
+
+	<node pkg="fast_livo" type="fastlivo_mapping" name="laserMapping" output="screen">
+		<rosparam file="$(find fast_livo)/config/camera_mid360.yaml" />
+	</node>
+
+	<group if="$(arg rviz)">
+		<node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_livo)/rviz_cfg/fast_livo2.rviz" />
+	</group>
+
+	<!-- D435i 发布 raw image，一般不需要 republish；如需压缩图像转 raw 可取消下面注释 -->
+	<!-- <node pkg="image_transport" type="republish" name="republish" args="compressed in:=/camera/color/image raw out:=/camera/color/image_raw" output="screen" respawn="true"/> -->
+
+</launch>

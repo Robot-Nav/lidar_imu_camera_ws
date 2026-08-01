@@ -1,0 +1,93 @@
+common:
+  img_topic: "/camera/color/image_raw"
+  lid_topic: "/livox/lidar"
+  imu_topic: "/imu/data"
+  img_en: 1
+  lidar_en: 1
+  ros_driver_bug_fix: false
+
+extrin_calib:
+  # LiDAR to IMU extrinsics (直接使用 LiDAR_IMU_Init refinement 结果)
+  # FAST-LIVO2 期望的是 LiDAR->IMU (与 FAST_LIO 的 mid360.yaml 相同约定)
+  extrinsic_T: [0.038238, 0.028072, 0.067594]
+  extrinsic_R: [-0.001507, -0.999646, 0.026545,
+                 0.866263,  0.011957,  0.499446,
+                -0.499587,  0.023747,  0.865938]
+  # LiDAR to Camera (D435i color) extrinsics from direct_visual_lidar_calibration
+  Rcl: [0.009735, 0.483735, 0.875160,
+       -0.999950, 0.002563, 0.009706,
+        0.002452, -0.875211, 0.483736]
+  Pcl: [0.035936, 0.004955, -0.009093]
+
+time_offset:
+  imu_time_offset: 0.0
+  img_time_offset: -0.1
+  exposure_time_init: 0.0
+
+preprocess:
+  point_filter_num: 1
+  filter_size_surf: 0.1
+  lidar_type: 1 # Livox Avia / Mid-360
+  scan_line: 4    # Mid-360
+  blind: 0.5
+
+vio:
+  max_iterations: 5
+  outlier_threshold: 1000
+  img_point_cov: 100
+  patch_size: 8
+  patch_pyrimid_level: 4
+  normal_en: true
+  raycast_en: false
+  inverse_composition_en: false
+  exposure_estimate_en: true
+  inv_expo_cov: 0.1
+
+imu:
+  imu_en: true
+  imu_int_frame: 30
+  acc_cov: 2.0
+  gyr_cov: 0.1
+  b_acc_cov: 0.0001
+  b_gyr_cov: 0.0001
+
+lio:
+  max_iterations: 5
+  dept_err: 0.02
+  beam_err: 0.05
+  min_eigen_value: 0.005
+  voxel_size: 2.0
+  max_layer: 2
+  max_points_num: 50
+  layer_init_num: [5, 5, 5, 5, 5]
+
+local_map:
+  map_sliding_en: false
+  half_map_size: 100
+  sliding_thresh: 8
+
+uav:
+  imu_rate_odom: false
+  gravity_align_en: false
+
+publish:
+  dense_map_en: true
+  pub_effect_point_en: false
+  pub_plane_en: false
+  pub_scan_num: 1
+  blind_rgb_points: 0.0
+
+evo:
+  seq_name: "mid360_d435i"
+  pose_output_en: false
+
+pcd_save:
+  pcd_save_en: false
+  type: 0
+  colmap_output_en: false
+  filter_size_pcd: 0.15
+  interval: -1
+
+image_save:
+  img_save_en: false
+  interval: 1
