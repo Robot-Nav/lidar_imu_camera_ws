@@ -26,6 +26,23 @@
 | 方案一 | Livox MID360 | 超核（Hipnuc）IMU | [Mid360_超核IMU_LiDAR_IMU_Init完整标定与排错指南.md](./Mid360_超核IMU_LiDAR_IMU_Init完整标定与排错指南.md) |
 | 方案二 | RoboSense 16 线 | 外接 IMU | [RS16_外接IMU_LiDAR_IMU_Init标定指南.md](./RS16_外接IMU_LiDAR_IMU_Init标定指南.md) |
 
+
+
+
+## lidar与camera标定用的（附加）：
+
+[direct_visual_lidar_calibration](https://github.com/koide3/direct_visual_lidar_calibration)
+
+
+
+最终mid360雷达+D435i相机+超核imu跑了一下fast-lio2以及fast-livo2：
+
+
+<img width="1705" height="903" alt="fast-livo2" src="https://github.com/user-attachments/assets/0e172978-f3de-4de5-86f4-8bf34a6e20dc" />
+
+
+
+
 ## ✨ 功能特点
 
 - 🔧 **时空联合标定**：基于 LI-Init 算法，同时估计 LiDAR-IMU 外参旋转/平移、时间延迟与 IMU 零偏
