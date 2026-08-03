@@ -1,11 +1,11 @@
 common:
     lid_topic:  "/rslidar_points"
-    imu_topic:  "/imu/data"
+    imu_topic:  "/camera/imu"
 
 preprocess:
     lidar_type: 6                # Robosense LiDAR
-    scan_line: 128
-    blind: 2
+    scan_line: 16
+    blind: 1.0
     feature_extract_en: false
 
 initialization:

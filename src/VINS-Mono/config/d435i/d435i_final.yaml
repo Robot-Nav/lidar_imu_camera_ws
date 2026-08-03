@@ -1,0 +1,87 @@
+%YAML:1.0
+
+# ============================================================
+# D435i 最终配置：外参与时间偏移已固化（estimate_extrinsic=0, estimate_td=0）
+# 外参来自 Run1+Run2 均值，见 results/d435i/vins/camera_imu_extrinsic_final.yaml
+# ============================================================
+
+#common parameters
+imu_topic: "/camera/imu"
+image_topic: "/camera/color/image_raw"
+output_path: "/home/zjs/lidar_imu_camera_ws/results/d435i/vins"
+
+#camera calibration
+model_type: PINHOLE
+camera_name: d435i
+image_width: 640
+image_height: 480
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 604.457
+   fy: 604.577
+   cx: 328.495
+   cy: 240.873
+
+# Extrinsic parameter between IMU and Camera.
+# 0: 使用以下固定外参，不再优化
+estimate_extrinsic: 0
+#Rotation from camera frame to imu frame, imu^R_cam (均值结果)
+extrinsicRotation: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [9.999974579e-01, -1.589985000e-03, -1.598816200e-03,
+          1.594891200e-03, 9.999940094e-01, 3.072053400e-03,
+          1.593922100e-03, -3.074595500e-03, 9.999940031e-01]
+#Translation from camera frame to imu frame, imu^T_cam (均值结果)
+extrinsicTranslation: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-2.323100000e-02,
+          8.525000000e-03,
+          2.254000000e-03]
+
+#feature tracker parameters
+max_cnt: 150
+min_dist: 25
+freq: 10
+F_threshold: 1.0
+show_track: 1
+equalize: 0
+fisheye: 0
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+#imu parameters
+acc_n: 0.1
+gyr_n: 0.01
+acc_w: 0.0002
+gyr_w: 2.0e-5
+g_norm: 9.805
+
+#loop closure parameters
+loop_closure: 0
+load_previous_pose_graph: 0
+fast_relocalization: 0
+pose_graph_save_path: "/home/zjs/lidar_imu_camera_ws/results/d435i/vins/pose_graph/"
+
+#unsynchronization parameters
+estimate_td: 0
+td: 0.00881
+
+#rolling shutter parameters
+rolling_shutter: 1
+rolling_shutter_tr: 0.033
+
+#visualization parameters
+save_image: 0
+visualize_imu_forward: 0
+visualize_camera_size: 0.4

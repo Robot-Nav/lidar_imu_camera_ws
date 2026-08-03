@@ -1,0 +1,80 @@
+%YAML:1.0
+
+#common parameters
+imu_topic: "/camera/imu"
+image_topic: "/camera/color/image_raw"
+output_path: "/home/zjs/lidar_imu_camera_ws/results/d435i/vins"
+
+#camera calibration
+model_type: PINHOLE
+camera_name: d435i
+image_width: 640
+image_height: 480
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 604.457
+   fy: 604.577
+   cx: 328.495
+   cy: 240.873
+
+# Extrinsic parameter between IMU and Camera.
+# Initial guess = D435i factory "Color->Gyro" extrinsic, VINS will optimize it.
+estimate_extrinsic: 1   # 1: have initial guess, optimize around it
+#Rotation from camera frame to imu frame, imu^R_cam
+extrinsicRotation: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [0.999982, -0.00550951, -0.00243105,
+          0.00550956, 0.999985, 1.09132e-05,
+          0.00243095, -2.4307e-05, 0.999997]
+#Translation from camera frame to imu frame, imu^T_cam
+extrinsicTranslation: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-0.020309653, 0.004985745, 0.011292960]
+
+#feature tracker parameters
+max_cnt: 150            # max feature number in feature tracking
+min_dist: 25            # min distance between two features
+freq: 10                # frequence (Hz) of publish tracking result
+F_threshold: 1.0        # ransac threshold (pixel)
+show_track: 1           # publish tracking image as topic
+equalize: 0             # if image is too dark or light, trun on equalize
+fisheye: 0              # if using fisheye, trun on it
+
+#optimization parameters
+max_solver_time: 0.04   # max solver itration time (ms)
+max_num_iterations: 8   # max solver itrations
+keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
+
+#imu parameters
+acc_n: 0.1              # accelerometer measurement noise std dev
+gyr_n: 0.01             # gyroscope measurement noise std dev
+acc_w: 0.0002           # accelerometer bias random walk std dev
+gyr_w: 2.0e-5           # gyroscope bias random walk std dev
+g_norm: 9.805           # gravity magnitude
+
+#loop closure parameters
+loop_closure: 0                    # calibration only, no loop closure
+load_previous_pose_graph: 0        # load and reuse previous pose graph
+fast_relocalization: 0
+pose_graph_save_path: "/home/zjs/lidar_imu_camera_ws/results/d435i/vins/pose_graph/"
+
+#unsynchronization parameters
+estimate_td: 1                      # online estimate time offset between camera and imu
+td: 0.000                           # initial value of time offset. unit: s
+
+#rolling shutter parameters
+rolling_shutter: 1                  # 0: global shutter camera, 1: rolling shutter camera
+rolling_shutter_tr: 0.033           # unit: s. rolling shutter read out time per frame
+
+#visualization parameters
+save_image: 0                   # save image in pose graph
+visualize_imu_forward: 0        # output imu forward propogation
+visualize_camera_size: 0.4      # size of camera marker in RVIZ

@@ -93,6 +93,9 @@ add_executable(li_init
         include/LI_init/LI_init.cpp
         src/preprocess.cpp)
 
+# 确保自定义消息(States.msg/Pose6D.msg)生成后再编译源文件，避免并行编译报头文件缺失
+add_dependencies(li_init ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
+
 target_link_libraries(li_init ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES} ${CERES_LIBRARIES})
 target_include_directories(li_init PRIVATE ${PYTHON_INCLUDE_DIRS})
 
