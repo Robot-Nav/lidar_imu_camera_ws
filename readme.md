@@ -18,7 +18,8 @@
 同时覆盖 **D435i 内置 IMU 内参标定** 与 **内置相机–IMU 外参 / 时间偏移联合优化**（基于 VINS-Mono），以及 **LiDAR–Camera 外参标定**（FAST-Calib / direct_visual_lidar_calibration），形成 LiDAR、Camera、IMU 三类传感器标定的完整闭环。
 例如：
 
-<img width="3072" height="4096" alt="lidar-imu" src="https://github.com/user-attachments/assets/44064b1e-27bb-43ea-94eb-430dd4f8e14e" />
+<img width="400" alt="629522958-44064b1e-27bb-43ea-94eb-430dd4f8e14e_compressed"
+src="https://github.com/user-attachments/assets/11599551-8a58-4386-82f5-277cf04f73ce" />
 
 **3D打印件**：[Mid360雷达+D435i相机3D打印支架](https://makerworld.com/zh/models/1838891-d435i-and-mid360-radar-vision-integrated-bracket-m)
 
